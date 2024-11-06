@@ -6,6 +6,10 @@ from .models import Article, Category
 from django.db.models import Q # type: ignore
 from django.http import HttpResponse # type: ignore
 
+def HomePage(request):
+    return render(request, 'master.html')
+
+
 def article_list(request):
     articles = Article.objects.all()
     return render(request, 'article_list_template.html', {'articles': articles})
