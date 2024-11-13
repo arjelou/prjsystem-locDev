@@ -115,6 +115,20 @@
             cursor: pointer;
             border-radius: 0 4px 4px 0;
         }
+        .search-bar a {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border: none;
+            background-color: #ffffff;
+            color: #0f2a43;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+        }
+        .search-bar a:hover {
+            border-color: 1px #0f2a43;
+
+        }
+
         .search-bar button:hover {
             background-color: #0c131a;
         }
@@ -151,13 +165,14 @@
         .article-item p {
             color: #555;
             line-height: 1.4;
+            text-decoration: none;
         }
         .article-item a {
             color: #4CAF50;
             text-decoration: none;
             font-weight: bold;
         }
-        .article-item :hover {
+        .article-item h3:hover {
             text-decoration: underline;
         }
 
@@ -209,6 +224,7 @@
             <a href="/">Home</a>
             <a href="/articles/">Articles</a>
             <a href="{% url 'customer_list' %}">Download Library</a>
+            <a href="/shop/">Products</a>
             <a href="/admin/">Login</a>
         </div>
     </div>

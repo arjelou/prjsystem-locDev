@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'download_library',
     # Inventory Management for Computers
     'inventory',
+    # eCommerce for Microsoft and Othe products
+    'shop',
     
     'django.contrib.admin',
     'django.contrib.auth',
