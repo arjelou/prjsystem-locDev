@@ -1,30 +1,8 @@
-'''from django.contrib import admin
-
-from .models import Article, Category, Tag
-
-admin.site.register(Article, ArticleAdmin)
-admin.site.register(Category)
-admin.site.register(Tag)
-# Register your models here.
-
-class ArticleAdmin(admin.ModelAdmin):
-    # Display all relevant fields in the list view
-    list_display = ('title', 'category', 'created_at', 'updated_at')
-
-@admin.register(Article)
-class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title', 'tag')  # Display category name
-
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('category',)  # Display category name
-
-@admin.register(Tag)
-class TagAdmin(admin.ModelAdmin):
-    list_display = ('tag')  # Display category name'''
-
 from django.contrib import admin # type: ignore
 from .models import Article, Category, Tag
+
+from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import User
 
 class ArticleAdmin(admin.ModelAdmin):
     # Display all relevant fields in the list view
@@ -53,7 +31,47 @@ class ArticleAdmin(admin.ModelAdmin):
     # Make 'created_at' and 'updated_at' read-only to prevent manual changes
     readonly_fields = ('created_at', 'updated_at')
 
+class CustomUserAdmin(UserAdmin):
+    def get_fieldsets(self, request, obj=None):
+        """
+        Customize the fieldsets to replace the hashed password with asterisks.
+        """
+        fieldsets = super().get_fieldsets(request, obj)
+        new_fieldsets = []
+
+        for name, section in fieldsets:
+            if 'password' in section.get('fields', ()):
+                # Replace the 'password' field display with asterisks
+                fields = tuple(
+                    'password_display' if field == 'password' else field
+                    for field in section['fields']
+                )
+                section['fields'] = fields
+            new_fieldsets.append((name, section))
+
+        return new_fieldsets
+
+    def password_display(self, obj):
+        """
+        Return asterisks for the password display field.
+        """
+        return "********"
+
+    password_display.short_description = "Password"
+
+    readonly_fields = ('password_display',)  # Ensure it's read-only
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
+# Unregister the default UserAdmin
+admin.site.unregister(User)
+
+# Register the custom UserAdmin
+admin.site.register(User, CustomUserAdmin)    
+
 # Register ArticleAdmin with the Article model
 admin.site.register(Article, ArticleAdmin)
-admin.site.register(Category)
+#admin.site.register(Category)
 admin.site.register(Tag)

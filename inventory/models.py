@@ -8,6 +8,10 @@ class Category(models.Model):
     def __str__(self):
         return self.name
     
+    class Meta: 
+        verbose_name = "Categorys"
+        verbose_name_plural = "Categories"
+    
 class Computer(models.Model):
     name = models.CharField(max_length=100)
     client = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='computers')
