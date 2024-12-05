@@ -5,11 +5,16 @@ from django.db import models # type: ignore
 from ckeditor.fields import RichTextField # type: ignore
 
 class Category(models.Model):
+
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
 
     def __str__(self):
         return self.name
+    
+    class Meta: 
+        verbose_name = "Categorys"
+        verbose_name_plural = "Categories"
 
 class Tag(models.Model):
     name = models.CharField(max_length=50)

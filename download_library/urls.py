@@ -1,26 +1,6 @@
 from django.urls import path # type: ignore
 from . import views
 
-'''urlpatterns = [
-    path('', views.library_home, name='library_home'),
-    path('category/<int:category_id>/', views.category_files, name='category_files'),
-]
-
-urlpatterns = [
-    path('', views.library_home, name='library_home'),
-    path('customers/', views.customer_list, name='customer_list'),
-    path('customers/<int:customer_id>/', views.customer_files, name='customer_files'),
-    path('category/<int:category_id>/', views.category_files, name='category_files'),
-]
-
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    path('', views.library_home, name='library_home'),
-    path('category/<int:category_id>/', views.category_files, name='category_files'),
-]'''
-
 from django.conf import settings # type: ignore
 from django.conf.urls.static import static # type: ignore
 from django.contrib import admin # type: ignore
