@@ -3,7 +3,7 @@ ________________________________________
 1. **Clone the Repository (if not done already)**
 If you've already cloned the repository, skip to the next step.
 1.	Open a terminal and navigate to the directory where you want to clone the project. 
-2.	git clone <repository-url>
+2.	git clone https://github.com/arjelou/prjsystem-locDev/tree/locdev
 3.	Change to the cloned project directory: 
 4.	cd repository-name
 ________________________________________
